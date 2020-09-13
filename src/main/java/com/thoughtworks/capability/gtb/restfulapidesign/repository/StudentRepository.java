@@ -14,11 +14,15 @@ public class StudentRepository {
     private static final Map<Integer, Student> studentMap = new HashMap<>();
     private static final AtomicInteger atoInteger = new AtomicInteger(1);
 
-    public void addStudent(Student student) {
-        student.setId(atoInteger.get());
-        studentMap.put(student.getId(), student);
-//        students.add(student);
-        atoInteger.set(atoInteger.get() + 1);
+    public void saveStudent(Student student) {
+        if (student.getId() == 0 || !studentMap.containsKey(student.getId())){
+            student.setId(atoInteger.get());
+            studentMap.put(student.getId(), student);
+            atoInteger.set(atoInteger.get() + 1);
+        }else{
+            studentMap.put(student.getId(), student);
+        }
+
     }
 
     public List<Student> findAll() {

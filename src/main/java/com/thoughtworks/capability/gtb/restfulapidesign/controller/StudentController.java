@@ -4,7 +4,6 @@ import com.thoughtworks.capability.gtb.restfulapidesign.domain.GenderType;
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.exception.StudentNotExistException;
 import com.thoughtworks.capability.gtb.restfulapidesign.service.StudentService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +20,7 @@ public class StudentController {
 
     @PostMapping("")
     public ResponseEntity addStudent(@RequestBody Student student) {
-        studentService.addStudent(student);
+        studentService.saveStudent(student);
         return ResponseEntity.ok().build();
     }
 
@@ -39,6 +38,12 @@ public class StudentController {
     @GetMapping("/{id}")
     public ResponseEntity getStudent(@PathVariable Integer id) throws StudentNotExistException {
         return  ResponseEntity.ok(studentService.getStudent(id));
+    }
+
+    @PatchMapping("{id}")
+    public ResponseEntity updataStudent(@PathVariable int id, @RequestBody Student student) throws StudentNotExistException {
+        studentService.updateStudent(id, student);
+        return ResponseEntity.ok().build();
     }
 
 }

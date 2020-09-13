@@ -17,8 +17,8 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public void addStudent(Student student){
-        this.studentRepository.addStudent(student);
+    public void saveStudent(Student student){
+        this.studentRepository.saveStudent(student);
     }
 
     public List<Student> getStudents(GenderType gender) {
@@ -31,5 +31,13 @@ public class StudentService {
 
     public Student getStudent(Integer id) throws StudentNotExistException {
         return studentRepository.getStudentById(id);
+    }
+
+    public void updateStudent(int id, Student student) throws StudentNotExistException {
+        Student oldStudent = studentRepository.getStudentById(id);
+        if ( student.getGender() != null ) oldStudent.setGender(student.getGender());
+        if ( student.getName() != null ) oldStudent.setName(student.getName());
+        if ( student.getNote() != null ) oldStudent.setNote(student.getNote());
+        studentRepository.saveStudent(oldStudent);
     }
 }
