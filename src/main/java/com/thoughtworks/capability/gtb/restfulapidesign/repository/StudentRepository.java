@@ -39,10 +39,18 @@ public class StudentRepository {
     }
 
     public void deleteStudent(int id) throws StudentNotExistException {
-        if ( !studentMap.containsKey(id)){
-            throw new StudentNotExistException();
-        }
+        isExistStudent(id);
         studentMap.remove(id);
     }
 
+    public Student getStudentById(Integer id) throws StudentNotExistException {
+        isExistStudent(id);
+        return studentMap.get(id);
+    }
+
+    private void isExistStudent(int id) throws StudentNotExistException {
+        if ( !studentMap.containsKey(id)){
+            throw new StudentNotExistException();
+        }
+    }
 }

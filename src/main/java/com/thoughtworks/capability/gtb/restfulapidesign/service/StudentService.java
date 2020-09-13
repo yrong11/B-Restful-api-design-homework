@@ -28,4 +28,8 @@ public class StudentService {
     public void deleteStudent(Integer id) throws StudentNotExistException {
         studentRepository.deleteStudent(id);
     }
+
+    public Student getStudent(Integer id) throws StudentNotExistException {
+        return studentRepository.getStudentById(id);
+    }
 }
