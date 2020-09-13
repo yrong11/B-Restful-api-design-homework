@@ -5,6 +5,7 @@ import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.exception.StudentNotExistException;
 import com.thoughtworks.capability.gtb.restfulapidesign.service.StudentService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,7 +20,7 @@ public class StudentController {
     }
 
     @PostMapping("")
-    public ResponseEntity addStudent(@RequestBody Student student) {
+    public ResponseEntity addStudent(@Validated @RequestBody Student student) {
         studentService.saveStudent(student);
         return ResponseEntity.ok().build();
     }
