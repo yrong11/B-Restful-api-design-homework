@@ -6,7 +6,6 @@ import com.thoughtworks.capability.gtb.restfulapidesign.exception.StudentNotExis
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import javax.swing.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
