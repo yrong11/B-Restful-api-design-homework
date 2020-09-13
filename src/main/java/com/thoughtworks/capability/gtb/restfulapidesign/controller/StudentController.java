@@ -1,5 +1,6 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.controller;
 
+import com.thoughtworks.capability.gtb.restfulapidesign.domain.GenderType;
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.service.StudentService;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,12 @@ public class StudentController {
     public ResponseEntity addStudent(@RequestBody Student student) {
         studentService.addStudent(student);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("")
+    public ResponseEntity getStudents(@RequestParam(required = false) GenderType gender){
+        return ResponseEntity.ok(studentService.getStudents(gender));
+
     }
 
 
