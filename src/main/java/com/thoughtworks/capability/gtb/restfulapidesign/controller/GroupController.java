@@ -19,4 +19,9 @@ public class GroupController {
     public ResponseEntity getGroups(){
         return ResponseEntity.ok(groupService.getGroups());
     }
+
+    @GetMapping("/divide")
+    public ResponseEntity divideGroup() {
+        return ResponseEntity.ok(groupService.divideGroups());
+    }
 }

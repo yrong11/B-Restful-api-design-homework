@@ -17,4 +17,8 @@ public class GroupRepository {
         studentGroup.forEach((id, group) -> groups.add(group));
         return groups;
     }
+
+    public void save(List<Group> groupList) {
+        groupList.forEach(group -> studentGroup.put(group.getId(), group));
+    }
 }
