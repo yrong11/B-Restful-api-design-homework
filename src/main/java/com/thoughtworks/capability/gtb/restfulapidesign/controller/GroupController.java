@@ -1,10 +1,10 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.controller;
 
+import com.thoughtworks.capability.gtb.restfulapidesign.exception.GroupNameRepeatException;
+import com.thoughtworks.capability.gtb.restfulapidesign.exception.GroupNotExistException;
 import com.thoughtworks.capability.gtb.restfulapidesign.service.GroupService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/groups")
@@ -23,5 +23,11 @@ public class GroupController {
     @GetMapping("/divide")
     public ResponseEntity divideGroup() {
         return ResponseEntity.ok(groupService.divideGroups());
+    }
+
+    @PatchMapping("/{groupId}")
+    public ResponseEntity modifyGroupName(@PathVariable int groupId, @RequestBody String name) throws GroupNameRepeatException, GroupNotExistException {
+        groupService.modifyGroupName(groupId, name);
+        return ResponseEntity.ok().build();
     }
 }

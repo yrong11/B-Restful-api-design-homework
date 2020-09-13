@@ -2,6 +2,8 @@ package com.thoughtworks.capability.gtb.restfulapidesign.service;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Group;
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
+import com.thoughtworks.capability.gtb.restfulapidesign.exception.GroupNameRepeatException;
+import com.thoughtworks.capability.gtb.restfulapidesign.exception.GroupNotExistException;
 import com.thoughtworks.capability.gtb.restfulapidesign.repository.GroupRepository;
 import com.thoughtworks.capability.gtb.restfulapidesign.repository.StudentRepository;
 import org.springframework.stereotype.Service;
@@ -40,5 +42,11 @@ public class GroupService {
         groupRepository.save(groupList);
         return groupList;
 
+    }
+
+    public void modifyGroupName(int groupId, String name) throws GroupNameRepeatException, GroupNotExistException {
+        Group group = groupRepository.findById(groupId);
+        groupRepository.checkGroupNameRepeat(name);
+        group.setName(name);
     }
 }

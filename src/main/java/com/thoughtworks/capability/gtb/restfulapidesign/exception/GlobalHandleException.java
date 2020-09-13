@@ -19,4 +19,10 @@ public class GlobalHandleException {
         ErrorResult errorResult = ErrorResult.builder().code(HttpStatus.BAD_REQUEST.value()).message(exception.getMessage()).build();
         return ResponseEntity.badRequest().body(errorResult);
     }
+
+    @ExceptionHandler({GroupNameRepeatException.class, GroupNotExistException.class})
+    public ResponseEntity handleGroupException(Exception exception){
+        ErrorResult errorResult = ErrorResult.builder().code(HttpStatus.BAD_REQUEST.value()).message(exception.getMessage()).build();
+        return ResponseEntity.badRequest().body(errorResult);
+    }
 }
